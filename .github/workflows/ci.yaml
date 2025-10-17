@@ -33,7 +33,7 @@ jobs:
           context: .
           file: app/Dockerfile
           push: true
-          tags: tmderegstry-g4a7frgzesare7c9.azurecr.io/tm-front:${{ env.SHORT_SHA }}
+          tags: fajmayor/gitop-app:${{ env.SHORT_SHA }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           DOCKER_BUILDKIT: 1
