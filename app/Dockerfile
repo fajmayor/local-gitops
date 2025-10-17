@@ -16,7 +16,7 @@ WORKDIR /app
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-COPY app.py .
+COPY app/app.py .
 
 RUN chown -R appuser:appuser /app
 USER appuser
