@@ -12,7 +12,7 @@ spec:
           - path: "timer-app"
   template:
     metadata:
-      name: "timer-{{path.basename}}"
+      name: "{{path.basename}}"
     spec:
       project: default
       source:
