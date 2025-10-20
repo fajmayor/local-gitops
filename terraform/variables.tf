@@ -7,6 +7,24 @@ variable "cluster_name" {
   }
 }
 
+variable "argocd_name" {
+  type        = string
+  description = "The ArgoCD name."
+  validation {
+    condition     = length(var.argocd_name) > 0
+    error_message = "ArgoCD name cannot be empty."
+  }
+}
+
+variable "argocd_namespace" {
+  type        = string
+  description = "The ArgoCD namespace."
+  validation {
+    condition     = length(var.argocd_namespace) > 0
+    error_message = "ArgoCD namespace cannot be empty."
+  }
+}
+
 variable "driver" {
   type        = string
   description = "The minikube driver."

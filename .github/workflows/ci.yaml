@@ -1,5 +1,3 @@
----
-
 name: CI Pipeline
 
 on:
@@ -39,26 +37,15 @@ jobs:
           DOCKER_BUILDKIT: 1
           BUILDKIT_INLINE_CACHE: 1
 
-      # - name: Build Docker Image
-      #   run: |
-      #     docker build -t thedevopsdude/complete-devops-project:${{ env.SHORT_SHA }} .
-      # - name: Login to Dockerhub
-      #   run: |
-      #     echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+      - name: Congure Git Author
+        run: |
+          git config --local user.email "fajmayor@gmail.com"
+          git config --local user.name "fajmayor"
 
-      # - name: Push to Dockerhub
-      #   run: |
-      #     docker push thedevopsdude/complete-devops-project:${{ env.SHORT_SHA }}
-
-      # - name: Congure Git Author
-      #   run: |
-      #     git config --local user.email "fajmayor@gmail.com"
-      #     git config --local user.name "fajmayor"
-
-      # - name: Update Helm Chart with new image tag
-      #   run: |
-      #     sed -i "s/tag:.*/tag: ${{ env.SHORT_SHA }}/" ./complete-devops-project-time-printer/values.yaml
-      #     git add ./complete-devops-project-time-printer/values.yaml
-      #     git commit -m "Updated image tag to ${{ env.SHORT_SHA }}"
-      #     git push
+      - name: Update Helm Chart with new image tag
+        run: |
+          sed -i "s/tag:.*/tag: ${{ env.SHORT_SHA }}/" ./timer-app/values.yaml
+          git add ./timer-app/values.yaml
+          git commit -m "Updated image tag to ${{ env.SHORT_SHA }}"
+          git push
       

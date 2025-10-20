@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: "fajmayor/gitop-app"
+  pullPolicy: IfNotPresent
+  tag: "d5ff862"
+
+serviceAccount:
+  enabled: false
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+volumes: []
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

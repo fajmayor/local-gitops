@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: timer-applicationset
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: "https://github.com/fajmayor/local-gitops"
+        revision: "main"
+        directories:
+          - path: "timer-app"
+  template:
+    metadata:
+      name: "timer-{{path.basename}}"
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/fajmayor/local-gitops"
+        targetRevision: main
+        path: "timer-app"
+        helm:
+          valueFiles:
+            - "values.yaml"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: timer
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
