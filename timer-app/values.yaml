@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: "fajmayor/gitop-app"
   pullPolicy: IfNotPresent
-  tag: "d5ff862"
+  tag: 0c1d673
 
 serviceAccount:
   enabled: false
