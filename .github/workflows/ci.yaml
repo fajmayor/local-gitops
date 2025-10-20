@@ -5,12 +5,20 @@ on:
     branches:
       - main
 
+# Allow the workflow to push commits using the provided GITHUB_TOKEN
+permissions:
+  contents: write
+
 jobs: 
   build_and_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v5
+        with:
+          # ensure the token is available and credentials are persisted for pushing commits
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
       - name: Set Short SHA
         run: |
